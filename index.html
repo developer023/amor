@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi esposa, Gordis?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe4e1;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #ff69b4;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #yesBtn {
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #f0f0f0;
+            color: black;
+        }
+
+        #noBtn.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .hearts {
+            font-size: 2em;
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¿Quieres ser mi esposa, Gordis?</h1>
+        <button id="yesBtn" onclick="handleYes()">Sí</button>
+        <button id="noBtn" onclick="handleNo()">No</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+
+        function handleYes() {
+            document.getElementById('message').innerHTML = `
+                <div class="hearts">❤️❤️❤️❤️❤️</div>
+                <p>Sabía que ibas a querer, mi amor!</p>
+            `;
+        }
+
+        function handleNo() {
+            noClickCount++;
+
+            if (noClickCount === 1) {
+                alert('¿Segura que no quieres?');
+            } else if (noClickCount === 2) {
+                alert('¿Segurísima, Gordis?');
+            } else if (noClickCount === 3) {
+                alert('Mira chama, ¿tú estás segura que no quieres?');
+                document.getElementById('noBtn').classList.add('disabled');
+                document.getElementById('noBtn').disabled = true;
+            }
+
+            document.getElementById('yesBtn').style.transform = `scale(${1 + noClickCount * 0.5})`;
+        }
+    </script>
+</body>
+</html>
